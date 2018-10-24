@@ -83,7 +83,7 @@ namespace PSLauncherForm
             var newProcessInfo = new System.Diagnostics.ProcessStartInfo();
             newProcessInfo.FileName = files[scriptNumber]; //this works great if you create a shortcut to the powershell script and in the shortcut use -powershell.exe -command then filepath of the original script. All of this will go in the "Target" field of the shortcut
             newProcessInfo.Verb = "runas"; //run the item as administrator
-                           // prior code -- Testing   newProcessInfo.Arguments = @"powershell -noexit " + readFile.ReadToEnd(); //noexit switch keeps the powershell window from closing before you get to read the result
+                           // prior code -- Testing    newProcessInfo.Arguments = @"powershell -noexit " + readFile.ReadToEnd(); //noexit switch keeps the powershell window from closing before you get to read the result
 
             System.Diagnostics.Process.Start(newProcessInfo); //execute powershell script
         }
