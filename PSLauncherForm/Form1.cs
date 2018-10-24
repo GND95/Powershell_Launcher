@@ -85,7 +85,7 @@ namespace PSLauncherForm
             newProcessInfo.Verb = "runas"; //run the item as administrator
                            // prior code -- Testing    newProcessInfo.Arguments = @"powershell -noexit " + readFile.ReadToEnd(); //noexit switch keeps the powershell window from closing before you get to read the result
 
-            System.Diagnostics.Process.Start(newProcessInfo); //execute powershell script
+            System.Diagnostics.Process.Start(newProcessInfo); // execute powershell script 
         }
 
         private void psBtn1_Click(object sender, EventArgs e)
