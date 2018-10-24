@@ -23,7 +23,7 @@ namespace PSLauncherForm
         }
 
         List<Button> buttonList;
-        string[] files;
+        string[] files;       
 
         private void toolStripMenuItem3_Click(object sender, EventArgs e) //open menustrip button
         {
@@ -35,9 +35,17 @@ namespace PSLauncherForm
                 {
                     files = Directory.GetFiles(fbd.SelectedPath);
 
-                    for (int i = 0; i < files.Length; i++) //dynamically naming all the buttons after the script names in the folder containing the powershell scripts
+                    try
                     {
-                        buttonList[i].Text = files[i].Split('\\').Last().Split('.').First();
+                        for (int i = 0; i < files.Length; i++) //dynamically naming all the buttons after the script names in the folder containing the powershell scripts
+                        {
+                            buttonList[i].Text = files[i].Split('\\').Last().Split('.').First();
+                        }
+                    }
+                    catch
+                    {
+                        MessageBox.Show("The number of scripts in the folder exceeded the number of buttons. Please reduce the number of items in the selected folder.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        Application.Restart();
                     }
 
                     if (files.Length > 0 && files.Length <= 20) //enabling the corresponding buttons based on the number of scripts in the folder
@@ -77,15 +85,27 @@ namespace PSLauncherForm
             Application.Restart();
         }
 
+        private void creditToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Version 1.1 \nDeveloped by Garrett DeBlois", "Version", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
         void executeScript(int scriptNumber) //where the powershell script file is read and executed
         {
-                            // prior code -- Testing  StreamReader readFile = new StreamReader(files[scriptNumber]); //read the contents of the script file          
-            var newProcessInfo = new System.Diagnostics.ProcessStartInfo();
-            newProcessInfo.FileName = files[scriptNumber]; //this works great if you create a shortcut to the powershell script and in the shortcut use -powershell.exe -command then filepath of the original script. All of this will go in the "Target" field of the shortcut
-            newProcessInfo.Verb = "runas"; //run the item as administrator
-                           // prior code -- Testing    newProcessInfo.Arguments = @"powershell -noexit " + readFile.ReadToEnd(); //noexit switch keeps the powershell window from closing before you get to read the result
+            try
+            {
+                // prior code -- Testing  StreamReader readFile = new StreamReader(files[scriptNumber]); //read the contents of the script file          
+                var newProcessInfo = new System.Diagnostics.ProcessStartInfo();
+                newProcessInfo.FileName = files[scriptNumber]; //this works great if you create a shortcut to the powershell script and in the shortcut use -powershell.exe -command then filepath of the original script. All of this will go in the "Target" field of the shortcut
+                newProcessInfo.Verb = "runas"; //run the item as administrator
+                                               // prior code -- Testing    newProcessInfo.Arguments = @"powershell -noexit " + readFile.ReadToEnd(); //noexit switch keeps the powershell window from closing before you get to read the result
 
-            System.Diagnostics.Process.Start(newProcessInfo); // execute powershell script 
+                System.Diagnostics.Process.Start(newProcessInfo); // execute powershell script 
+            }
+            catch
+            {
+                MessageBox.Show("The selected file was not of the appropriate format.\nYou will need to create a shortcut, select the original script as the shortcut destination, and from there change the target of the shortcut (in the properties area of the shortcut) to: powershell.exe -command \" & 'FilePathExample.ps1'\" \nfor this program to work properly.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void psBtn1_Click(object sender, EventArgs e)
@@ -286,6 +306,6 @@ namespace PSLauncherForm
         private void psBtn40_Click(object sender, EventArgs e)
         {
             executeScript(39);
-        }
+        }       
     }
 }

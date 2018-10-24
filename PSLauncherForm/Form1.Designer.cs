@@ -38,6 +38,7 @@
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.infoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.restartToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.creditToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.psBtn1 = new System.Windows.Forms.Button();
             this.psBtn2 = new System.Windows.Forms.Button();
             this.psBtn3 = new System.Windows.Forms.Button();
@@ -114,7 +115,8 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.testToolStripMenuItem,
             this.infoToolStripMenuItem,
-            this.restartToolStripMenuItem});
+            this.restartToolStripMenuItem,
+            this.creditToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(9, 3, 0, 3);
@@ -150,6 +152,13 @@
             this.restartToolStripMenuItem.Size = new System.Drawing.Size(78, 29);
             this.restartToolStripMenuItem.Text = "Restart";
             this.restartToolStripMenuItem.Click += new System.EventHandler(this.restartToolStripMenuItem_Click);
+            // 
+            // creditToolStripMenuItem
+            // 
+            this.creditToolStripMenuItem.Name = "creditToolStripMenuItem";
+            this.creditToolStripMenuItem.Size = new System.Drawing.Size(82, 29);
+            this.creditToolStripMenuItem.Text = "Version";
+            this.creditToolStripMenuItem.Click += new System.EventHandler(this.creditToolStripMenuItem_Click);
             // 
             // psBtn1
             // 
@@ -663,6 +672,7 @@
         private System.Windows.Forms.Button psBtn32;
         private System.Windows.Forms.Button psBtn31;
         private System.Windows.Forms.ToolStripMenuItem restartToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem creditToolStripMenuItem;
     }
 }
 
